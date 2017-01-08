@@ -1,0 +1,19 @@
+<h1>Restaurents#show</h1>
+
+
+Restaurent Name : <%= @restaurent.name %> <br />
+Restaurent Address : <%= @restaurent.address %> <br />
+Restaurent Phone : <%= @restaurent.phone %> <br />
+
+Profile Pic : <%= image_tag @restaurent.avatar.url(:medium) %><br />
+<h3>Comments : </h3>
+<% @restaurent.reviews.each_with_index  do |review, index| %>
+    <%= "Comment #{index+1}"%> :  <%= review.content %> <br />
+    <%= "Commented By"%> :  <%= review.customer.name %> <br />
+<% end %>
+
+<br />
+<%= link_to "Back" , restaurents_path , method: :get %> <br />
+
+
+

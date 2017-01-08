@@ -1,0 +1,27 @@
+<h1>Restaurents Profile</h1>
+<% if current_user.type == "Owner" %>
+  <h4><%= link_to "New Restaurent" ,new_restaurent_path , method: :get %> </h4>
+<% end %>
+<% @restaurents.each_with_index do |restaurent, index| %>
+    <h2>  <%= link_to "Restaurent #{index+1}" , restaurent_path(restaurent), method: :get %></h2>
+    Restaurent Name : <%= restaurent.name %> <br />
+    Restaurent Address : <%= restaurent.address %> <br />
+    Restaurent Phone : <%= restaurent.phone %> <br />
+
+    Profile Pic : <%= image_tag restaurent.avatar.url(:medium) %><br />
+    <h3>Comments : </h3>
+     <% restaurent.reviews.each_with_index  do |review, index| %>
+        <%= link_to "Comment #{index+1}", restaurent_path(restaurent), method: :get %> :  <%= review.content %><br />
+        <%= "Commented By"%> :  <%= review.customer.name %><br />
+        <% end %>
+
+    <% if current_user.type == "Customer" %>
+    <%= form_for Review.new, url: reviews_path do |f| %>
+        Add Comment : <%= f.text_area :content %>
+        <%= f.hidden_field :restaurent_id, :value => restaurent.id %>
+        <%= f.submit "submit comment" %>
+    <% end %>
+    <% end %>
+
+<% end %>
+

@@ -1,0 +1,10 @@
+<h1>Sign Up</h1>
+
+<%= form_for :user, url: users_path do |f|   %>
+    First name : <%= f.text_field :firstname %><br />
+    Lastname : <%= f.text_field :lastname %><br />
+    Email : <%= f.text_field :email %><br />
+    Password : <%= f.text_field :password %><br />
+    Owner : <%= f.check_box  "owner",{}, true, false %><br />
+    <%=  f.submit %>
+<% end %>

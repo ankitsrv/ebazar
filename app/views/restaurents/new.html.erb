@@ -1,0 +1,10 @@
+<h1>Restaurents#new</h1>
+<p>Find me in app/views/restaurents/new.html.erb</p>
+
+<%= form_for :restaurent, url: restaurents_path, html: { multipart: true } do |f| %>
+    Name : <%= f.text_field :name %> <br />
+    Address : <%= f.text_area :address %><br />
+    Phone : <%= f.text_field :phone %><br />
+    <%= f.file_field :avatar %><br />
+    <%= f.submit %>
+<% end %>
